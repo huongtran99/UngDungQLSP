@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ứng Dụng Quản Lý Sản Phẩm</title>
+</head>
+<body>
+<h3>Danh Sách Sản Phẩm</h3>
+<button onclick="repeat()">Hiển Thị Danh Sách</button>  <button onclick="addProduct()">Thêm</button>
+<br> <br>
+<span id="list"></span>
+<script>
+    let name = ["Name", "Định", "Quân", "Chính", "Ý"];
+    let stt = ["STT", 1, 2, 3, 4];
+    let sout;
+    let result = document.getElementById("list");
+
+    function displayName(name, stt) {
+        sout = "<table border='1px solid black' width='300' cellpadding='5px' style='border-collapse: collapse;' >"
+        for (let i = 0; i < name.length; i++) {
+            sout = sout + "<tr>";
+
+            sout = sout + "<td>" + stt[i] + "</td>";
+            sout = sout + "<td>" + name[i] + "</td>";
+            if (i !== 0) {
+                sout = sout + "<td>" + "<button onclick='addProduct()'>" + "Thêm" + "</button>" + "</td>";
+                sout = sout + "<td>" + "<button onclick='updateProduct(" + i + ")'>" + "Sửa" + "</button>" + "</td>";
+                sout = sout + "<td>" + "<button onclick='deleteProduct(" + i + ")'>" + "Xóa" + "</button>" + "</td>";
+            }
+            sout = sout + "</tr>";
+        }
+        sout = sout + "</table>";
+        return result.innerHTML = sout;
+    }
+
+    function addProduct() {
+        stt[stt.length] = prompt("Nhập số thứ tự");
+        name[name.length] = prompt("Thêm Tên");
+        repeat();
+
+    }
+
+    function updateProduct(i) {
+        for (let j = 1; j < name.length; j++) {
+            if (i === j) {
+                name[j] = prompt("Sửa");
+            }
+        }
+        repeat();
+    }
+
+    function deleteProduct(i) {
+        let newName = [];
+        for (let j = 0; j < name.length; j++){
+            if (j === i) {
+                continue;
+            }
+            newName.push(name[j]);
+        }
+        name = newName;
+        repeat();
+    }
+
+
+    function repeat() {
+        displayName(name, stt);
+    }
+
+</script>
+</body>
+</html>
