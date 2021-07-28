@@ -8,12 +8,25 @@
 <h3>Danh Sách Sản Phẩm</h3>
 <button onclick="repeat()">Hiển Thị Danh Sách</button>  <button onclick="addProduct()">Thêm</button>
 <br> <br>
-<span id="list"></span>
+<span id="list"></span> <br>
+<input type="text" id="add">
+
+<button onclick="addInput()">Add Product</button>
+<br> <br>
+
+Edit id <input type="text" id="editId">
+Edit product <input type="text" id="editPr">
+<br> <br>
+<button onclick="editInput()">Edit Product</button>
 <script>
     let name = ["Name", "Định", "Quân", "Chính", "Ý"];
     let stt = ["STT", 1, 2, 3, 4];
     let sout;
     let result = document.getElementById("list");
+    let a;
+    let b;
+    let c;
+
 
     function displayName(name, stt) {
         sout = "<table border='1px solid black' width='300' cellpadding='5px' style='border-collapse: collapse;' >"
@@ -33,11 +46,28 @@
         return result.innerHTML = sout;
     }
 
+    function addInput() {
+         a = document.getElementById("add").value;
+        stt[stt.length] = a;
+        name[name.length] = a;
+        repeat();
+    }
+
     function addProduct() {
         stt[stt.length] = prompt("Nhập số thứ tự");
         name[name.length] = prompt("Thêm Tên");
         repeat();
 
+    }
+
+    // hàm em mới làm
+    function editInput() {
+        b = document.getElementById("editId").value;
+        c = document.getElementById("editPr").value;
+        if(b == "2") {
+            name[b] = c;
+        }
+        repeat();
     }
 
     function updateProduct(i) {
